@@ -5,6 +5,8 @@
 package com.gladisbrites.concesionaria.igu;
 
 import com.gladisbrites.concesionaria.logica.ControladoraLogica;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -146,11 +148,11 @@ public class AltaAutomovil extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(125, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addGap(360, 360, 360)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,6 +233,8 @@ public class AltaAutomovil extends javax.swing.JFrame {
        int cantPuertas=Integer.parseInt( txtCantPuertas.getText());
        
         controladoraLogica.agrearAutomovil(modelo,marca,motor,color,patente,cantPuertas);
+        mostrarMensaje("guardado correctamente","Info","se guardo correctamente");
+        this.dispose();
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -238,6 +242,23 @@ public class AltaAutomovil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModeloActionPerformed
 
+    
+    
+    public void mostrarMensaje(String mensaje, String tipo, String titulo){
+                
+        JOptionPane optionPane =new JOptionPane(mensaje);
+        if(tipo.equals("Info")){
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);}
+        else if(tipo.equals("Error")){
+                    optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

@@ -47,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnConsulta.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnConsulta.setText("Consulta, Edición y baja");
+        btnConsulta.setText("Consulta, edición y baja");
         btnConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaActionPerformed(evt);
@@ -120,7 +120,10 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
-        // TODO add your handling code here:
+        ConsultaAutomovil consulta =new ConsultaAutomovil();
+        consulta.setVisible(true);
+        consulta.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnConsultaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
