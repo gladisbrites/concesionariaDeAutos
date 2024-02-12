@@ -227,7 +227,11 @@ public class AltaAutomovil extends javax.swing.JFrame {
         controladoraLogica.agrearAutomovil(modelo,marca,motor,color,patente,cantPuertas);
         mostrarMensaje("guardado correctamente","Info","se guardo correctamente");
         limpiarCeldas();
-        //this.dispose();
+        this.dispose();
+        ConsultaAutomovil consulta =new ConsultaAutomovil();
+        consulta.setVisible(true);
+        consulta.setLocationRelativeTo(null);
+        
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
