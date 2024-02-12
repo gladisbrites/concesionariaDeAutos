@@ -1,6 +1,7 @@
 
 package com.gladisbrites.concesionaria.igu;
 
+import com.gladisbrites.concesionaria.logica.Automovil;
 import com.gladisbrites.concesionaria.logica.ControladoraLogica;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -9,13 +10,16 @@ import javax.swing.JOptionPane;
  *
  * @author Gladis
  */
-public class AltaAutomovil extends javax.swing.JFrame {
+public class ModificarAuto extends javax.swing.JFrame {
 
-    ControladoraLogica controladoraLogica=new ControladoraLogica();
-    
-    public AltaAutomovil() {
+    ControladoraLogica controladoraLogica=null;
+    Automovil auto;
+    public ModificarAuto(int id) {
+        controladoraLogica =new ControladoraLogica();
         initComponents();
+        cargarAutoEditar(id);
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,13 +40,13 @@ public class AltaAutomovil extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCantPuertas = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel1.setText("Alta de Automóvil");
+        jLabel1.setText("Modificar datos de Automóvil");
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\54375\\Downloads\\logo_peugeot.png")); // NOI18N
 
@@ -86,10 +90,10 @@ public class AltaAutomovil extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel8.setText("Cant. Puertas:");
 
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setText("Modificar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -104,10 +108,6 @@ public class AltaAutomovil extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,19 +146,23 @@ public class AltaAutomovil extends javax.swing.JFrame {
                         .addContainerGap(125, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(360, 360, 360)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(48, 48, 48)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,7 +189,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
                     .addComponent(txtCantPuertas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
+                    .addComponent(btnEditar)
                     .addComponent(btnLimpiar))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -216,7 +220,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
         limpiarCeldas();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
        String modelo= txtModelo.getText();
        String marca=txtMarca.getText();
        String motor=txtMotor.getText();
@@ -224,12 +228,15 @@ public class AltaAutomovil extends javax.swing.JFrame {
        String patente=txtPatente.getText();
        int cantPuertas=Integer.parseInt( txtCantPuertas.getText());
        
-        controladoraLogica.agrearAutomovil(modelo,marca,motor,color,patente,cantPuertas);
-        mostrarMensaje("guardado correctamente","Info","se guardo correctamente");
-        limpiarCeldas();
-        //this.dispose();
+        controladoraLogica.modificarAuto(auto,modelo,marca,motor,color,patente,cantPuertas);
+        mostrarMensaje("se editó correctamente","Info","edición exitosa");
         
-    }//GEN-LAST:event_btnAgregarActionPerformed
+        ConsultaAutomovil consul=new ConsultaAutomovil();
+        consul.setVisible(true);
+        consul.setLocationRelativeTo(null);
+        this.dispose();
+
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloActionPerformed
         // TODO add your handling code here:
@@ -262,7 +269,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
         txtCantPuertas.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -280,4 +287,16 @@ public class AltaAutomovil extends javax.swing.JFrame {
     private javax.swing.JTextField txtMotor;
     private javax.swing.JTextField txtPatente;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarAutoEditar(int id) {
+        this.auto=controladoraLogica.traerAuto(id);
+        
+        txtModelo.setText(auto.getModelo());
+        txtMarca.setText(auto.getMarca());
+        txtMotor.setText(auto.getMotor());
+        txtColor.setText(auto.getColor());
+        txtPatente.setText(auto.getPatente());
+        txtCantPuertas.setText(String.valueOf(auto.getCantPuertas()));
+        
+    }
 }

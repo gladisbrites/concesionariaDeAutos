@@ -63,6 +63,11 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
 
         btnModificar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -140,13 +145,13 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
               int idAuto = Integer.parseInt(String.valueOf(
                     tablaAutos.getValueAt(tablaAutos.getSelectedRow(), 0)));
               controladoraLogica.borrarAuto(idAuto);
-              mostrarMensaje("Automovil elimando correctamete","Info","Auto eliminado");
 
               cargarTabla();
-              
+              mostrarMensaje("Automóvil elimando correctamente","Info","Auto eliminado");
+
             }else
                 { 
-                mostrarMensaje("no seleccionó ningun registro","Error","debe seleccionar un registro");
+                mostrarMensaje("no seleccionó ningún registro","Error","debe seleccionar un registro");
 
             }
             
@@ -160,6 +165,26 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cargarTabla();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        
+        if(tablaAutos.getRowCount()>0){
+            if(tablaAutos.getSelectedRow()!=-1){
+               int idAutos =Integer.parseInt(String.valueOf(tablaAutos.getValueAt(tablaAutos.getSelectedRow(),0 )));
+               ModificarAuto pantallaModif =new ModificarAuto(idAutos);
+               pantallaModif.setVisible(true);
+               pantallaModif.setLocationRelativeTo(null);
+               this.dispose();
+               
+            }else{
+                 mostrarMensaje("no seleccionó ningún registro","Error","debe seleccionar un registro");
+
+            }
+        }else{
+               mostrarMensaje("no hay registro para modificar","Error","no hay registros para modificar");
+
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     
     
