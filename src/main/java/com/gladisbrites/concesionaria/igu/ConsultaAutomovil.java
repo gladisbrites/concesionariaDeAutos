@@ -145,7 +145,8 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
               cargarTabla();
               
             }else
-            { mostrarMensaje("no seleccionó ninguna mascota","Error","debe seleccionar mascota");
+                { 
+                mostrarMensaje("no seleccionó ningun registro","Error","debe seleccionar un registro");
 
             }
             
@@ -211,7 +212,8 @@ public class ConsultaAutomovil extends javax.swing.JFrame {
                 
         JOptionPane optionPane =new JOptionPane(mensaje);
         if(tipo.equals("Info")){
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);}
+                 optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        }
         else if(tipo.equals("Error")){
                     optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 
